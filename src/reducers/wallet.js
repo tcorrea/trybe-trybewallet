@@ -3,6 +3,9 @@ const INITIAL_STATE = {
   expenses: [],
 };
 
-const wallet = (state = INITIAL_STATE, action) => state;
+const wallet = (state = INITIAL_STATE, action) => {
+  console.log(action);
+  return state;
+};
 
 export default wallet;
