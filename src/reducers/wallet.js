@@ -4,7 +4,9 @@ const INITIAL_STATE = {
 };
 
 const wallet = (state = INITIAL_STATE, action) => {
-  console.log(action);
+  if (action.type === 'ADD_CURRENCY_KEYS') {
+    return { ...state, currencies: action.value };
+  }
   return state;
 };
 
