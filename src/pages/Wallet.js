@@ -20,13 +20,61 @@ class Wallet extends React.Component {
   };
 
   render() {
-    const { user } = this.props;
+    const { user, wallet } = this.props;
     return (
-      <header>
-        <span data-testid="email-field">{user.email}</span>
-        <span data-testid="total-field">0</span>
-        <span data-testid="header-currency-field">BRL</span>
-      </header>
+      <>
+        <header>
+          <span data-testid="email-field">{user.email}</span>
+          <span data-testid="total-field">0</span>
+          <span data-testid="header-currency-field">BRL</span>
+        </header>
+        <div>
+          <label htmlFor="value">
+            Valor:
+            <input type="number" name="value" data-testid="value-input" />
+          </label>
+
+          <label htmlFor="description">
+            Descrição:
+            <input
+              type="text"
+              name="description"
+              data-testid="description-input"
+            />
+          </label>
+
+          <label htmlFor="currency">
+            Moeda
+            <select name="currency" data-testid="currency-input" id="currency">
+              {wallet.currencies.map((item, index) => (
+                <option value={ item } key={ index }>
+                  {item}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <label htmlFor="method">
+            Metodo de pagamento:
+            <select name="method" data-testid="method-input">
+              <option>Dinheiro</option>
+              <option>Cartão de crédito</option>
+              <option>Cartão de débito</option>
+            </select>
+          </label>
+
+          <label htmlFor="tag">
+            Tipo Despesa:
+            <select name="tag" data-testid="tag-input">
+              <option>Alimentação</option>
+              <option>Lazer</option>
+              <option>Trabalho</option>
+              <option>Transporte</option>
+              <option>Saúde</option>
+            </select>
+          </label>
+        </div>
+      </>
     );
   }
 }
@@ -37,6 +85,7 @@ Wallet.propTypes = {
 
 const mapStateToProps = (state) => ({
   user: state.user,
+  wallet: state.wallet,
 });
 
 const mapDispatchToProps = (dispatch) => ({
