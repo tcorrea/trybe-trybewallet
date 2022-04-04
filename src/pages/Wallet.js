@@ -195,9 +195,25 @@ class Wallet extends React.Component {
               <th>Moeda de conversão</th>
               <th>Editar/Excluir</th>
             </tr>
-            <tr>
-              <td />
-            </tr>
+
+            {wallet.expenses.map((item, index) => {
+              // const currencyArr = item.exchangeRates[item.currency].name;
+              const exchange = item.exchangeRates[item.currency];
+              return (
+                <tr key={ index }>
+                  <td>{item.description}</td>
+                  <td>{item.tag}</td>
+                  <td>{item.method}</td>
+                  <td>{Number(item.value).toFixed(2)}</td>
+                  <td>{exchange.name}</td>
+                  <td>{Number(exchange.ask).toFixed(2)}</td>
+                  <td>{Number(item.value * exchange.ask).toFixed(2)}</td>
+                  <td>Real</td>
+                  <td />
+                </tr>
+              );
+            })}
+
           </table>
         </div>
       </>
